@@ -52,4 +52,4 @@ by run jasmine By typing the following in the terminal: `npm run test`.
 4. **Sharp** - NodeJS image processor.
 
 ## Development:
-* Haitham Elsherbiny.
+**Haitham Elsherbiny**.
