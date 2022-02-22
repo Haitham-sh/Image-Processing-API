@@ -1,6 +1,6 @@
 import sharp from 'sharp'
 
-// resize not exist image and save it
+//resize not exist image and save it
 const resizing = async (
   filename: string,
   newName: string,
