@@ -16,11 +16,19 @@ image.get('/', async (req: Request, res: Response): Promise<void> => {
   console.log(newName)
 
   // paths to input and output images
-  const path1 = `./src/images/${filename}.jpg`
-  const path2 = `./src/thumb/${newName}.jpg`
+  const rootImages = path.resolve('./src/images');
+  const rootThumb = path.resolve('./src/thumb');
+  const path1 = path.resolve(rootImages, `${filename}.jpg`);
+  const path2 = path.resolve(rootThumb, `${newName}.jpg`);
 
   // validate the data
-  if (width > 0 && height > 0 && fs.existsSync(path1) === true) {
+  if (
+    width > 0 &&
+    height > 0 &&
+    path1.startsWith(rootImages) &&
+    path2.startsWith(rootThumb) &&
+    fs.existsSync(path1)
+  ) {
     try {
       // send exist image
       if (fs.existsSync(path2)) {
