@@ -2,8 +2,18 @@ import express, { Request, Response } from 'express'
 import fs from 'fs'
 import path from 'path'
 import resizing from '../../utilities/resize'
+import rateLimit from 'express-rate-limit'
 
 const image = express.Router()
+
+// Set up rate limiter: maximum of 100 requests per 15 minutes
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.'
+});
+
+image.use(limiter);
 
 image.get('/', async (req: Request, res: Response): Promise<void> => {
   const width = parseInt(req.query.width as unknown as string, 10)
