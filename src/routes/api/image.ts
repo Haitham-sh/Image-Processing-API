@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import fs from 'fs'
 import path from 'path'
+import sanitizeFilename from 'sanitize-filename'
 import resizing from '../../utilities/resize'
 import rateLimit from 'express-rate-limit'
 
@@ -20,7 +21,8 @@ image.get('/', async (req: Request, res: Response): Promise<void> => {
   console.log(width)
   const height = parseInt(req.query.height as unknown as string, 10)
   console.log(height)
-  const filename: string = req.query.filename as string
+  let filename: string = req.query.filename as string
+  filename = sanitizeFilename(filename) || 'default'
   console.log(filename)
   const newName = `${filename}_${width}_${height}`
   console.log(newName)
