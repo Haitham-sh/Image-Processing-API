@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
-import * as dotenv from 'dotenv'
+// Load dotenv without requiring its missing type declaration.
+const dotenv = require('dotenv') as { config: () => void }
 import routes from './routes/index'
 
 dotenv.config()
