@@ -12,9 +12,8 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test": "npx tsc && jasmine",
-    "start:dev": "nodemon --exec tsx src/index.ts",
+    "start:dev": "npm run clean && npx tsx src/index.ts",
     "start:end": "npm run build && nodemon build/index.js",
-    "start": "npm run build && node build/index.js",
     "clean": "rimraf build/",
     "build": "npm run clean && npx tsc"
   },
